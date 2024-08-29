@@ -7,9 +7,14 @@ import com.facebook.react.uimanager.ViewManager
 
 
 class ReactNativeBiometricPackage : ReactPackage {
+  // override fun createNativeModules(reactContext: ReactApplicationContext): List<NativeModule> {
+  //   return listOf(ReactNativeBiometricModule(reactContext))
+  // }
   override fun createNativeModules(reactContext: ReactApplicationContext): List<NativeModule> {
-    return listOf(ReactNativeBiometricModule(reactContext))
-  }
+    val modules = mutableListOf<NativeModule>()
+    modules.add(ReactNativeBiometricModule(reactContext))
+    return modules
+}
 
   override fun createViewManagers(reactContext: ReactApplicationContext): List<ViewManager<*, *>> {
     return emptyList()
