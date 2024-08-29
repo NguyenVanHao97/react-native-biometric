@@ -20,3 +20,26 @@ const ReactNativeBiometric = NativeModules.ReactNativeBiometric
 export function multiply(a: number, b: number): Promise<number> {
   return ReactNativeBiometric.multiply(a, b);
 }
+const FingerPrint = NativeModules.FingerPrint
+  ? NativeModules.FingerPrint
+  : new Proxy(
+      {},
+      {
+        get() {
+          throw new Error(LINKING_ERROR);
+        },
+      }
+    );
+
+export function showBiometric(
+  a: string,
+  b: string,
+  c: string,
+  callBack: Function
+) {
+  FingerPrint.showBiometric(a, b, c, callBack);
+}
+
+export function showPatternSheet() {
+  FingerPrint.showPatternSheet();
+}
